@@ -16,6 +16,7 @@ const Mapa = () => {
     //<Marker icon={icon} position={data}></Marker>
         const mapRef = useRef();
         const [cord, setCord] = useState([19.472819274952897, -99.14333273147834])
+        const [key,setKey]=useState(0);
         const [data,setData]=useState([cord]);
         const success=(position)=>{
             const mapC = mapRef.current;
@@ -46,9 +47,13 @@ const Mapa = () => {
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         />                    
-                        {data.map((item) => (
-                            <Marker position={item} icon={icon}/>
-                        ))}
+                        {data.map((item) => {
+                                    return(
+                                        <Marker key={key} position={item} icon={icon}/>
+                                    )
+                                }
+                            )
+                        }
                     </MapContainer>
                 </div>
             </>
